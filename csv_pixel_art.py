@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import ast
 import sys
 import numpy as np
