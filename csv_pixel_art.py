@@ -21,7 +21,7 @@ def string_to_rgb(rgb_string):
 
 def ansi(rgb_array):
     #ansi escape character for setting the color
-    if rgb_array[0] == -1:
+    if rgb_array[0] == -1 or rgb_array[0] == 300:
         return '\\e[0m '
     return f'\\e[48;2;{rgb_array[0]};{rgb_array[1]};{rgb_array[2]}m '
 
@@ -83,8 +83,9 @@ def image_format(inputfile):
         for row in range(height):
             for col in range(width):
                 if image_matrix[row,col,3] < 100:
-                    temp_matrix[row,col,0] = -1
-                ansi_matrix[row,col] = ansi(temp_matrix[row,col])
+                    ansi_matrix[row,col] = '\\e[0m '
+                else:
+                    ansi_matrix[row,col] = ansi(temp_matrix[row,col])
     elif channels == 3:
         ansi_matrix = np.empty((height,width,3),dtype='<U25')
         for row in range(height):
@@ -93,8 +94,8 @@ def image_format(inputfile):
     else:
         print("an error with the image dimensions occurred")
         return [[[-1]]]
-    print(ansi_matrix)
-    print(ansi_matrix.shape)
+    #print(ansi_matrix)
+    #print(ansi_matrix.shape)
     return ansi_matrix
 
 def image_format_adjust(inputfile, width=width, height=height):
