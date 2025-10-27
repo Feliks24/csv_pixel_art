@@ -2,25 +2,27 @@
 
 python csv\_pixel\_art inputfile outputfile
 
-there are several options for source, the input 
+there are several options for the inputfile type
 
-you can input csv fies for this it's important to set the following variables in settings.py:
+the easiest is a png/jpg/jpeg file (transparency supported) with the correct size
+
+in my case I usually use a size of around 20x20
+
+## CSV
+
+I started this for compiling csv files but it just way to inconvenient in comparison to the above
+
+Using actual csv files as input you have to check the settings.py:
 
 delimiter/quotechar: delimiter as per csv setting/dialect; by defailt ',' and '"'
 
+## Experimental
 
+setting adjust=True will make that the program will try to scale down to width, height
 
-also an option is inputing images of either png, jpg or jpeg.
-For these the following variable settings apply:
+the scaling is rather naive, but you do have the option, if you so wish, results may vary
 
-adjust, width, height
-
-by default adjust will be false. Setting it to true will cause the program to use
-an experimental function that will scale the image down to the defined width and height.
-the scale down is naive and might produce unexpected results not resembling the image.
-
-for images that already have the correct size just use adjust=False
-
+## Some other settings
 
 there's also a few variables that affect the output independent of inputfile type
 
@@ -36,14 +38,26 @@ multiple (by default with 2) so pixel art comes out right. can only be integer
 
 python: ast, sys, numpy, csv, os, PIL
 
+## Display the art
+
+make sure the output file can be executed with: chmod +x outputfile
+
+if that doesn't work you can try adding '#!/bin/bash' in line 1
+
+if you want to display some art when starting your terminal you can for instance add
+path/to/outputfile to ~/.bashrc
+
+i also have a script that chooses a random pixel art from /.config/bash_pixel_art that you can find 
+under the name random_bash_pixels i put in examples
+
+
 ## Example and Credit
 
-For the example pixel art of Emil from Nier
+for the example pixel art of Emil from Nier
 
-I copied it from user 'jehuty': https://kandipatterns.com/patterns/characters/emil-nier-35822
+i copied Emil from user 'jehuty': https://kandipatterns.com/patterns/characters/emil-nier-35822
 
+also i have copied and adjusted some pixel art from here of a chatot: https://www.birdiestitching.com/product/pokemon-chatot-2/
 
+Emil being 25x25 and compiled from csv, while chatot is 20x20 and compiled from png
 
-To inspect the picture in the command line make sure the file is executable with chmod +x output
-
-then run ./output; if that doesn't work add '#!/bin/bash' to first line of the file
